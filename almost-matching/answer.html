@@ -1,0 +1,95 @@
+
+<script>
+var s1 = "he*llos*sxx";
+var s2 = "hell***osear*y";
+var s1lenmin = s1.length;
+var s2lenmin = s2.length;
+var s1lenmax = s1.length;
+var s2lenmax = s2.length;
+var max = 0;
+var flag = 0;
+
+
+if(  
+	
+     !(
+     
+     ( 
+	 s1.charAt(0)==s2.charAt(0)   &&   
+	 s1.charAt(s1.length-1)==s2.charAt(s2.length-1)  
+     )  
+     
+     ||
+     
+     ( 
+     	( s1.charAt(0)=='*' || s2.charAt(0)=='*' || s1.charAt(0)==s2.charAt(0) ) &&
+        ( s1.charAt(s1.length-1)=='*' || s2.charAt(s2.length-1)=='*' || s1.charAt(s1.length-1)==s2.charAt(s2.length-1)    )
+     )
+     
+     )
+){
+ document.write("false");
+	
+
+} else {
+
+	for(var x=0; x<(s1.length); x++){
+
+	if(s1.charAt(x)=='*'){
+    	
+		s1lenmax+=3;
+        s1lenmin-=1;
+	}
+    }
+    for(var x=0; x<(s2.length); x++){
+
+	if(s2.charAt(x)=='*'){
+		s2lenmax+=3;
+        s2lenmin-=1;
+	}
+    }
+
+    if(!((s2lenmax>=s1lenmin) && (s1lenmax>=s2lenmin))){
+    	document.write(s2lenmax);
+        document.write(s1lenmax);
+        document.write(s1lenmin);
+        document.write(s2lenmin);
+    	document.write("false");
+    } else {
+    	if(s2lenmax>s1lenmax){
+        	max = s2lenmax;
+        }
+        max = s1lenmax;
+    	for(var x=0,y=0; x<max && y<max ; x++,y++){
+        	if( s1.charAt(x)=='*' ){
+            	var counter = 0;
+          		while(counter<4 && s2.charAt(y)!='*'){
+                    y++;
+                	counter++;
+                } 
+           } 
+           if( s2.charAt(y)=='*' ){
+            	var counter = 0;
+          		while(counter<4 && s1.charAt(x)!='*'){
+                    x++;
+                	counter++;
+                } 
+           }
+           flag++;
+        }
+        	var min = (s1lenmin<s2lenmin)? s1lenmin:s2lenmin;
+            if(flag>=min)document.write("true");
+            
+    	}
+        
+    }
+    
+    
+    
+    
+    
+
+
+
+
+</script>
